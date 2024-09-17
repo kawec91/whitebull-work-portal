@@ -1,6 +1,5 @@
 "use client";
 
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Link from "next/link";
 import * as actions from "../actions/index";
 

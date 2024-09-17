@@ -2,10 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import NotUploadedDocumentCard from "./NotUploadedDocumentCard";
-import { db } from "../db";
-import { Documents } from "@prisma/client";
 import UploadedDocumentCard from "./UploadedDocumentCard";
-import AplicationCardForm from "./AplicationCardForm";
 
 interface AplicationCardProps {
   close: Function;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { db } from "../db";
 import AdminPanelEntrance from "./AdminPanelEntrance";
 import { UserData } from "@/types";

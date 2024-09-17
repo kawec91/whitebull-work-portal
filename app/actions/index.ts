@@ -1,22 +1,49 @@
 'use server';
 
-import { has } from 'lodash';
 import { db } from '../db/index';
 import { redirect } from 'next/navigation';
-import { Documents } from '@prisma/client';
+import mime from "mime";
+import { join } from "path";
+import { stat, mkdir, writeFile } from "fs/promises";
+
+
 
 export async function annoucmentEdit(formData: FormData) {
     const id = parseInt(formData.get('id') as string);
     const title = formData.get('title') as string;
     const salary = formData.get('salary') as string;
-    const image = formData.get('image') as File | null;
-    const video = formData.get('video') as File | null;
+    const image = formData.get('image') as File || null;
+    const video = formData.get('video') as File || null;
     const description = formData.get('description') as string;
     const location = "ul.Mostowa 36, 87-100 Toruń" as string;
 
-    //Use values to fix error
-    const myImage = image;
-    const myVideo = video
+    //Image Prepare And Upload
+    const buffer = Buffer.from(await image.arrayBuffer());
+    const relativeUploadDir = `/uploads/documents/${new Date(Date.now())
+    .toLocaleDateString("id-ID", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+     })
+    .replace(/\//g, "-")}`;
+
+    const uploadDir = join(process.cwd(), "public", relativeUploadDir);
+
+    try {
+        await stat(uploadDir);
+    } catch (e: any) {
+        // This is for checking the directory is exist (ENOENT : Error No Entry)
+        if (e.code === "ENOENT") await mkdir(uploadDir, { recursive: true }); 
+    } 
+
+    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+    const filename = `${image.name.replace(
+        /\.[^/.]+$/,
+        ""
+    )}-${uniqueSuffix}.${mime.getExtension(image.type)}`;
+    await writeFile(`${uploadDir}/${filename}`, buffer);
+    const fileUrl = `${relativeUploadDir}/${filename}`;
+    //END of uploading file and got a link
 
     await db.annoucment.findUnique({
         where: {
@@ -31,8 +58,8 @@ export async function annoucmentEdit(formData: FormData) {
         data: {
             title,
             salary,
-            image: '',
-            video: '',
+            image: fileUrl,
+            video: fileUrl,
             description,
             location,
         }
@@ -128,7 +155,7 @@ export async function createAplication(myUserEmail: string){
             }
         })
         //Save into db
-        const save = await db.aplicationData.create({
+        await db.aplicationData.create({
             data: {
                 annoucmentTitle: "",
                 userEmail: myUserEmail,

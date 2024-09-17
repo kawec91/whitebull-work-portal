@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import React from 'react'
-import obr from '../../public/assets/images/kelnerBydgoszcz.jpg'
 import Link from 'next/link';
 
 interface annoucementsData {

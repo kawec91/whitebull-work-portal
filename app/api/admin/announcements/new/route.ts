@@ -3,7 +3,6 @@ import { db } from "../../../../db/index";
 import mime from "mime";
 import { join } from "path";
 import { stat, mkdir, writeFile } from "fs/promises";
-import _ from "lodash";
 
 export const POST = async (req: Request) => {
     try {
@@ -14,7 +13,7 @@ export const POST = async (req: Request) => {
         const image = formData.get('image') as File || null;
         const video = formData.get('video') as File || null;
         const description = formData.get('description') as string;
-        let location = "ul.Mostowa 36, 87-100 Toruń" as string;
+        const location = "ul.Mostowa 36, 87-100 Toruń" as string;
 
         //Image Prepare And Upload
         const buffer = Buffer.from(await image.arrayBuffer());

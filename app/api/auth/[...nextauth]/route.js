@@ -1,6 +1,6 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
-import EmailProvider from "next-auth/providers/email";
+//import EmailProvider from "next-auth/providers/email";
 
 import { db } from "../../../db/index";
 

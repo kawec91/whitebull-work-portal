@@ -11,10 +11,10 @@ interface AplicationListTableProps {
 
 interface AplicationDataValues {
   id: number;
-  annoucmentTitle: String;
-  userEmail: String;
-  userProfileImageUrl: String | "";
-  userCvUrl: String | "";
+  annoucmentTitle: string;
+  userEmail: string;
+  userProfileImageUrl: string | "";
+  userCvUrl: string | "";
 }
 
 export default function AplicationListTable({

@@ -3,23 +3,23 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const Header = () => {
   const { data: session } = useSession();
 
-  const [providers, setProviders] = useState(null);
+  // const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
-  useEffect(() => {
-    const myProviders = async () => {
-      const response: any = await getProviders();
+  // useEffect(() => {
+  //   const myProviders = async () => {
+  //     const response: any = await getProviders();
 
-      setProviders(response);
-    };
+  //     setProviders(response);
+  //   };
 
-    myProviders();
-  }, []);
+  //   myProviders();
+  // }, []);
   return (
     <div className="h-[100px] px-4 border-b-[1px] border-black flex items-center justify-between">
       <div className="flex items-center justify-center gap-4">

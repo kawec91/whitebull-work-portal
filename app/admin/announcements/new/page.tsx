@@ -5,9 +5,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const NewAnnouncements = () => {
-  const [submitting, setSubmitting] = useState(false);
   const [content, setContent] = useState<string>("");
-  let [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     title: "",
     salary: "",
     image: "",
@@ -20,10 +19,10 @@ const NewAnnouncements = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(formData);
   };
-  const textAreaHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
-  };
+  // const textAreaHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  //   console.log(formData);
+  // };
 
   const handleContentChange = (res: string) => {
     setContent(res);
@@ -112,7 +111,7 @@ const NewAnnouncements = () => {
             type="submit"
             className="py-2 px-6 rounded-full bg-red-500 text-white"
           >
-            {submitting ? "..." : "Dodaj ogłoszenie"}
+            {false ? "..." : "Dodaj ogłoszenie"}
           </button>
         </div>
       </form>

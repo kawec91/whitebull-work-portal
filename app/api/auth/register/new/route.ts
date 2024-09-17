@@ -19,11 +19,11 @@ export const POST = async (req: Request) => {
     });
 
     //Prepare Password
-    const bcrypt = require('bcrypt');
-    const saltRounds = 10;
-    const myPlaintextPassword = password;
-    const someOtherPlaintextPassword = 'not_bacon';
-    let hashedPassword = ""
+    //const bcrypt = require('bcrypt');
+    // const saltRounds = 10;
+    // const myPlaintextPassword = password;
+    // const someOtherPlaintextPassword = 'not_bacon';
+    // let hashedPassword = ""
 
     // bcrypt.genSalt(saltRounds, function(err, salt) {
     //   bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
@@ -40,6 +40,7 @@ export const POST = async (req: Request) => {
         lastName: lastName,
         email: email,
         emailVerified,
+        password,
         role,
         profileImageUrl: profileImageUrl,
       };

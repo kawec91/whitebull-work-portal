@@ -1,8 +1,14 @@
 "use client";
 
 import AuthLoginForm from "@/app/components/AuthLoginForm";
-import React, { useEffect, useState } from "react";
-import { signIn, useSession, getProviders } from "next-auth/react";
+import React, { useEffect } from "react";
+import {
+  signIn,
+  useSession,
+  getProviders,
+  LiteralUnion,
+  ClientSafeProvider,
+} from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import GoogleIcon from "../../../public/assets/icons/google-icon.png";
@@ -10,18 +16,21 @@ import GoogleIcon from "../../../public/assets/icons/google-icon.png";
 export default function AuthLoginPage() {
   const { data: session } = useSession();
 
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = React.useState<Record<
+    LiteralUnion<string>,
+    ClientSafeProvider
+  > | null>(null);
 
   useEffect(() => {
     const myProviders = async () => {
-      const response: any = await getProviders();
+      const response = await getProviders();
 
       setProviders(response);
       console.log("LOGIN PAGE: SESSION: ", session);
     };
 
     myProviders();
-  }, []);
+  }, [session]);
   return (
     <>
       {session?.user ? (

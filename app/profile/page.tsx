@@ -3,10 +3,6 @@ import ProfileDocumentsTable from "../components/ProfileDocumentsTable";
 import ProfileTop from "../components/ProfileTop";
 import { Documents } from "@prisma/client";
 
-interface ProfileDocumentsTableProps {
-  userEmail: string | null | undefined;
-}
-
 interface DocumentDataTableProps {
   id: number;
   userEmail: string;
@@ -17,9 +13,7 @@ interface DocumentDataTableProps {
   documentType: string;
 }
 
-export default async function ProfilePage({
-  userEmail,
-}: ProfileDocumentsTableProps) {
+export default async function ProfilePage() {
   const profileDocuments: Documents[] = await db.documents.findMany();
 
   const userDocsData: DocumentDataTableProps[] = profileDocuments.map(

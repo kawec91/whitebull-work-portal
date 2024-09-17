@@ -2,8 +2,6 @@ import { db } from "../../../../db/index";
 import mime from "mime";
 import { join } from "path";
 import { stat, mkdir, writeFile } from "fs/promises";
-import { NextRequest, NextResponse } from "next/server";
-import _ from "lodash";
 import { ImportantDocumentsData } from "@/types";
 
 export const POST = async (req: Request) => {
