@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 //import EmailProvider from "next-auth/providers/email";
 
 import { db } from "../../../db/index";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 const handler = NextAuth({
   providers: [
@@ -54,6 +55,7 @@ const handler = NextAuth({
     //   },
     // }),
   ],
+  adapter: PrismaAdapter(prisma),
   callbacks: {
     async session({ session }) {
       console.log("SESSSION", session);
