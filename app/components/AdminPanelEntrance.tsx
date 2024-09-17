@@ -17,17 +17,6 @@ export default function AdminPanelEntrance({
   console.log("adminini", isAdmin);
   console.log("adminlist", adminList);
   useEffect(() => {
-    // const getUser = () => {
-    //   console.log("use Effect");
-    //   for (let i of adminList) {
-    //     if (i.email === session?.user?.email && i.role === "admin") {
-    //       setAdmin(true);
-    //       console.log("adm", isAdmin);
-    //     }
-    //   }
-    // };
-
-    // getUser();
     for (let i = 0; i < adminList.length; i++) {
       if (
         adminList[i].role === "admin" &&
@@ -38,7 +27,7 @@ export default function AdminPanelEntrance({
       }
     }
     console.log("use Effectg");
-  }, [session]);
+  }, [adminList, session?.user?.email]);
   return (
     <div>
       {isAdmin ? (

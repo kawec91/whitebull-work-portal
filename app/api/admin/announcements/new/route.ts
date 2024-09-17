@@ -11,7 +11,7 @@ export const POST = async (req: Request) => {
         const title = formData.get('title') as string;
         const salary = formData.get('salary') as string;
         const image = formData.get('image') as File || null;
-        const video = formData.get('video') as File || null;
+        //const video = formData.get('video') as File || null;
         const description = formData.get('description') as string;
         const location = "ul.Mostowa 36, 87-100 Toruń" as string;
 
@@ -29,9 +29,11 @@ export const POST = async (req: Request) => {
 
         try {
             await stat(uploadDir);
-        } catch (e: any) {
-            // This is for checking the directory is exist (ENOENT : Error No Entry)
-            if (e.code === "ENOENT") await mkdir(uploadDir, { recursive: true }); 
+        } catch (e) {
+            if ((e as NodeJS.ErrnoException).code === "ENOENT") {
+                await mkdir(uploadDir, { recursive: true });
+            }
+            console.log((e as Error).message);
         } 
 
         const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;

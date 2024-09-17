@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NotUploadedDocumentCard from "./NotUploadedDocumentCard";
 import UploadedDocumentCard from "./UploadedDocumentCard";
 
 interface AplicationCardProps {
-  close: Function;
+  close: any;
   userEmail: string | undefined;
   docsData: documentDataTableProps[];
 }

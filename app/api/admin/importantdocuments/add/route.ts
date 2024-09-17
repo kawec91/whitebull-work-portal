@@ -24,9 +24,11 @@ export const POST = async (req: Request) => {
 
         try {
             await stat(uploadDir);
-        } catch (e: any) {
-            // This is for checking the directory is exist (ENOENT : Error No Entry)
-            if (e.code === "ENOENT") await mkdir(uploadDir, { recursive: true }); 
+        } catch (e) {
+            if ((e as NodeJS.ErrnoException).code === "ENOENT") {
+                await mkdir(uploadDir, { recursive: true });
+            }
+            console.log((e as Error).message);
         } 
 
         const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;

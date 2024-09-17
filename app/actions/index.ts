@@ -8,12 +8,13 @@ import { stat, mkdir, writeFile } from "fs/promises";
 
 
 
+
 export async function annoucmentEdit(formData: FormData) {
     const id = parseInt(formData.get('id') as string);
     const title = formData.get('title') as string;
     const salary = formData.get('salary') as string;
     const image = formData.get('image') as File || null;
-    const video = formData.get('video') as File || null;
+    // const video = formData.get('video') as File || null;
     const description = formData.get('description') as string;
     const location = "ul.Mostowa 36, 87-100 Toruń" as string;
 
@@ -31,9 +32,11 @@ export async function annoucmentEdit(formData: FormData) {
 
     try {
         await stat(uploadDir);
-    } catch (e: any) {
-        // This is for checking the directory is exist (ENOENT : Error No Entry)
-        if (e.code === "ENOENT") await mkdir(uploadDir, { recursive: true }); 
+    } catch (e) {
+        if ((e as NodeJS.ErrnoException).code === "ENOENT") {
+            await mkdir(uploadDir, { recursive: true });
+        }
+        console.log((e as Error).message);
     } 
 
     const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
@@ -59,7 +62,7 @@ export async function annoucmentEdit(formData: FormData) {
             title,
             salary,
             image: fileUrl,
-            video: fileUrl,
+            video: "",
             description,
             location,
         }
@@ -93,7 +96,14 @@ export async function importantDocumentDelete(importantDocId: number) {
     redirect('/admin/importantdocuments');
 }
 
-export async function registerUser(formData: any) {
+interface RegisterFormData {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+}
+
+export async function registerUser(formData: RegisterFormData) {
     try {
 
         const {
@@ -101,11 +111,10 @@ export async function registerUser(formData: any) {
             lastName,
             email,
             password,
-            confirmedPassword,
         } = formData;
 
 
-        if(password === confirmedPassword){
+        if(password){
         //check if user already exists
         const userExists = await db.user.findUnique({
             where: {

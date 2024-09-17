@@ -1,34 +1,43 @@
 "use client";
 
 import AuthRegisterForm from "@/app/components/AuthRegisterForm";
-import { getProviders, useSession, signIn } from "next-auth/react";
+import {
+  getProviders,
+  useSession,
+  signIn,
+  ClientSafeProvider,
+  LiteralUnion,
+} from "next-auth/react";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import GoogleIcon from "../../../public/assets/icons/google-icon.png";
 
 export default function AuthRegisterPage() {
   const { data: session } = useSession();
-  const [email, setEmail] = useState("");
+  //const [email, setEmail] = useState("");
 
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = React.useState<Record<
+    LiteralUnion<string>,
+    ClientSafeProvider
+  > | null>(null);
 
-  const handleEmailLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      await signIn("email", { email });
-    }
-  };
+  // const handleEmailLogin = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (email) {
+  //     await signIn("email", { email });
+  //   }
+  // };
 
   useEffect(() => {
     const myProviders = async () => {
-      const response: any = await getProviders();
+      const response = await getProviders();
 
       setProviders(response);
       console.log("REG PAGE: SESSION: ", session);
     };
 
     myProviders();
-  }, []);
+  }, [session]);
   return (
     <div className="min-h-[calc(100vh_-_150px)]">
       <div className="flex flex-col items-center">
@@ -41,7 +50,7 @@ export default function AuthRegisterPage() {
           <hr className="border-[2px] border-black w-full" />
         </div>
         {providers &&
-          Object.values(providers).map((provider: any) =>
+          Object.values(providers).map((provider: ClientSafeProvider) =>
             provider.id === "google" ? (
               <button
                 type="button"

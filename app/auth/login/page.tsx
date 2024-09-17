@@ -56,7 +56,7 @@ export default function AuthLoginPage() {
             </div>
             <div className="pb-6">
               {providers &&
-                Object.values(providers).map((provider: any) => (
+                Object.values(providers).map((provider: ClientSafeProvider) => (
                   <button
                     type="button"
                     key={provider.name}

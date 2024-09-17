@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Provider from "./components/Provider";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "WhiteBull Praca",
   description: "Praca w SteakHouse & BourboneBar WhiteBull",
 };

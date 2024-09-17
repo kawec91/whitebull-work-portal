@@ -25,6 +25,7 @@ export default function ImportantDocumentsTableCard({
         <Image src={docIcon} height={40} width={40} alt="dokument-image" />
         <p>{title}</p>
       </div>
+      <div className="hidden">{url}</div>
       <div className="flex items-center justify-center gap-2">
         {/* <button className="text-blue-700">Zmień</button> */}
         <button

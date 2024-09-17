@@ -9,14 +9,6 @@ interface AplicationListTableProps {
   aplicationList: AplicationData[];
 }
 
-interface AplicationDataValues {
-  id: number;
-  annoucmentTitle: string;
-  userEmail: string;
-  userProfileImageUrl: string | "";
-  userCvUrl: string | "";
-}
-
 export default function AplicationListTable({
   aplicationList,
 }: AplicationListTableProps) {
