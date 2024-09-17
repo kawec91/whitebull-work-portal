@@ -24,13 +24,14 @@ export default function UploadedDocumentCard({
   const handleDelete = () => {
     actions.userDocumentDelete(id);
   };
-  const urlAcces = url;
+
   return (
     <div className="flex items-center justify-between w-full px-2">
       <div className="flex items-center">
         <Image src={docIcon} height={40} width={40} alt="dokument-image" />
         <span>{title}</span>
       </div>
+      <div className="hidden">{url}</div>
       <div className="flex items-center justify-center gap-2">
         {/* <button className="text-blue-700">Zmień</button> */}
         {showDeleteBtn && (

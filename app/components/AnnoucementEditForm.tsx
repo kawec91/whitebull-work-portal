@@ -35,10 +35,12 @@ export default function AnnoucementEditForm({ ann }: AnnoucementEditFormProps) {
 
     if (image) {
       formData.append("image", image);
+      setImage(image);
     }
 
     if (video) {
       formData.append("video", video);
+      setVideo(video);
     }
 
     actions.annoucmentEdit(formData);

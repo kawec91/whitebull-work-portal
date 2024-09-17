@@ -5,7 +5,7 @@ import NotUploadedDocumentCard from "./NotUploadedDocumentCard";
 import UploadedDocumentCard from "./UploadedDocumentCard";
 
 interface AplicationCardProps {
-  close: any;
+  close: React.EffectCallback;
   userEmail: string | undefined;
   docsData: documentDataTableProps[];
 }

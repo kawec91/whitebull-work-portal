@@ -15,15 +15,16 @@ export default function AuthRegisterForm() {
   const inputStyle = `w-full border border-black p-2 rounded-md`;
   const divStyle = `flex gap-2 w-full flex-col`;
 
-  const handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
     if (formData.password === formData.confirmPassword) {
       actions.registerUser(formData);
+      setFormData(formData);
     }
   };
   return (
@@ -81,7 +82,7 @@ export default function AuthRegisterForm() {
         </div>
         <button
           className="py-2 px-6 bg-red-700 uppercase text-white rounded-full font-bold"
-          onClick={(e) => handleSubmit(e)}
+          onClick={(e: React.MouseEvent<HTMLElement>) => handleSubmit(e)}
         >
           Rejestracja
         </button>
