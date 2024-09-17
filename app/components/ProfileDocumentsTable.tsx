@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import { db } from "../db";
-import { DocumentData } from "@/types";
 import { useSession } from "next-auth/react";
 import NotUploadedDocumentCard from "./NotUploadedDocumentCard";
 import UploadedDocumentCard from "./UploadedDocumentCard";

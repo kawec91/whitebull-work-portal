@@ -1,6 +1,5 @@
 import AplicationListTable from "@/app/components/AplicationListTable";
 import { db } from "@/app/db";
-import Image from "next/image";
 import React from "react";
 import { AplicationData } from "@prisma/client";
 

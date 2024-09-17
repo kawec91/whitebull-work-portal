@@ -1,7 +1,4 @@
 import { db } from "../db";
-import { notFound } from "next/navigation";
-import UploadedDocumentCard from "../components/UploadedDocumentCard";
-import NotUploadedDocumentCard from "../components/NotUploadedDocumentCard";
 import ProfileDocumentsTable from "../components/ProfileDocumentsTable";
 import ProfileTop from "../components/ProfileTop";
 import { Documents } from "@prisma/client";

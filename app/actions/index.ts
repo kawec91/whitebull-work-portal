@@ -12,9 +12,13 @@ export async function annoucmentEdit(formData: FormData) {
     const image = formData.get('image') as File | null;
     const video = formData.get('video') as File | null;
     const description = formData.get('description') as string;
-    let location = "ul.Mostowa 36, 87-100 Toruń" as string;
+    const location = "ul.Mostowa 36, 87-100 Toruń" as string;
 
-    const currentAnnoucement = await db.annoucment.findUnique({
+    //Use values to fix error
+    const myImage = image;
+    const myVideo = video
+
+    await db.annoucment.findUnique({
         where: {
             id: id,
         }
@@ -74,7 +78,7 @@ export async function registerUser(formData: any) {
         } = formData;
 
 
-
+        if(password === confirmedPassword){
         //check if user already exists
         const userExists = await db.user.findUnique({
             where: {
@@ -101,7 +105,7 @@ export async function registerUser(formData: any) {
             //Create user in db
             await db.user.create({
             data: newUser,
-            });
+            });}
         }
 
         //Response

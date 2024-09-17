@@ -24,6 +24,7 @@ export default function UploadedDocumentCard({
   const handleDelete = () => {
     actions.userDocumentDelete(id);
   };
+  const urlAcces = url;
   return (
     <div className="flex items-center justify-between w-full px-2">
       <div className="flex items-center">

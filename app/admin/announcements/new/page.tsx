@@ -2,8 +2,7 @@
 
 import Tiptap from "@/app/components/Tiptap";
 import Link from "next/link";
-import { Router } from "next/router";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 const NewAnnouncements = () => {
   const [submitting, setSubmitting] = useState(false);

@@ -2,7 +2,6 @@ import ImportantDocumentsSendForm from "@/app/components/ImportantDocumentsSendF
 import ImportantDocumentsTable from "@/app/components/ImportantDocumentsTable";
 import { db } from "@/app/db";
 import { ImportantDocuments } from "@prisma/client";
-import Image from "next/image";
 import React from "react";
 
 interface ImportantDocumentsProps {
