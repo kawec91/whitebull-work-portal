@@ -6,6 +6,7 @@ const nextConfig = {
       "localhost",
       "http://localhost:3000",
       "scontent-fra5-1.xx.fbcdn.net",
+      "https://whitebull-work-portal.vercel.app/",
     ],
   },
 };
